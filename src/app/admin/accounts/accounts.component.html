@@ -1,0 +1,78 @@
+<h3>Data Backoffice Accounts</h3>
+<br/>
+<button type="button" class="btn btn-primary"(click)="open(content)" >Add</button>
+<br/>
+<br/>
+<input type="text" class=" form-control" [(ngModel)]="textSearch" (keyup)="onSearch()" name="search" placeholder="Search" style="width: 300px;"/>
+<hr/>
+<div class="container">
+     <table class="table table-hover table-striped">
+          <thead>
+               <tr>
+                    <th>No</th>
+                    <th>Fullname</th>
+                    <th>Roles</th>
+                    <th>Email</th>
+                    <th>Dob</th>
+                    <th>Action</th>
+               </tr>
+          </thead>
+          <tbody>
+               <tr *ngFor="let accounts of dataAccounts; let i = index">
+                   <td>{{i + 1 + currentPage * pageSize}}</td> 
+                   <td>{{accounts.fullname}}</td>
+                   <td>{{accounts.rolesId}}</td>
+                   <td>{{accounts.email}}</td>
+                   <td>{{accounts.dob | date}}</td>
+                   <td>
+                         <button type="button" class="btn btn-primary">Update</button>&nbsp;
+                         <button type="button" class="btn btn-danger">Delete</button>
+                   </td>
+               </tr>
+          </tbody>
+     </table>
+     <mat-paginator
+     [length]="totalRecords"
+     [pageSize]="pageSize"
+     [pageSizeOptions]="[5, 10, 20]"
+     (page)="onPageChange($event)"
+     >
+</mat-paginator>
+<!--modal-->
+<ng-template #content let-modal>
+     <div class="modal-header">
+          <h4>Forms Accounts</h4>
+          <button type="button" class="btn btn-close" aria-label="close" (click)="modal.dismiss('Cross click')"></button>
+     </div>
+     <div class="modal-body">
+          <form [formGroup]="accountsForm">
+               <label>Fullname</label>
+               <input formControlName="fullname" type="text" class="form-control" placeholder="Full name"/>
+               <hr>
+               <label>Roles</label>
+               <select formControlName="rolesId" class="form-control">
+                    <option value="">Choose</option>
+                    <option *ngFor="let dropdownRoles of dataDropdownRoles" value="{{dropdownRoles.id}}">{{dropdownRoles.name}}</option>
+               </select>
+               <hr>
+               <label>Email</label>
+               <input formControlName="email" type="text" class="form-control" placeholder="Email"/>
+               <hr>
+               <label>Password</label>
+               <input formControlName="password" type="password" class="form-control"/>
+               <hr>
+               <label>DOB</label>
+               <input formControlName="dob" type="text" class="form-control"/>
+          </form>
+     </div>
+     <div class="modal-footer">
+          <button type="button" (click)="save()" class="btn btn-primary">
+               Save
+          </button>
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss()">
+               Cancel
+          </button>
+     </div>
+</ng-template>
+<!--modal-->
+</div>
