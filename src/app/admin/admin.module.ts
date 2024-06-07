@@ -6,7 +6,7 @@ import { AdminRoutingModule } from "./admin.routing.module";
 import { AccountsComponent } from "./accounts/accounts.component";
 import { SiswaComponent } from "./siswa/siswa.component";
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbDatepickerModule, NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
      declarations: [
@@ -21,6 +21,7 @@ import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
           AdminRoutingModule,
           MatPaginatorModule,
           NgbModalModule,
+          NgbDatepickerModule
      ]
 })
 export class AdminModule {

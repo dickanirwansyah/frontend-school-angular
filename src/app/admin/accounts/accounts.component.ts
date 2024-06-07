@@ -83,9 +83,23 @@ export class AccountsComponent implements OnInit{
 		);          
      }
 
+     parseDate(data:any):string {
+          const year = data.year;
+          const month = data.month.toString().padStart(2,'0');
+          const day = data.day.toString().padStart(2, '0');
+          return `${year}-${month}-${day}`;
+     }
+
      save(){
           console.log(this.accountsForm.value);
-          this.accountsService.saveAccounts(this.accountsForm.value)
+          var databackoffice = {
+               "fullname" : this.accountsForm.get('fullname')?.value,
+               "rolesId" : this.accountsForm.get('rolesId')?.value,
+               "email" : this.accountsForm.get('email')?.value,
+               "password" : this.accountsForm.get('password')?.value,
+               "dob" : this.parseDate(this.accountsForm.get('dob')?.value)
+          }
+          this.accountsService.saveAccounts(databackoffice)
                .subscribe(response => {
                     console.log(response)
                     this.accountsForm.reset();
