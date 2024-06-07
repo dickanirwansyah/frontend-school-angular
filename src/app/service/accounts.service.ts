@@ -25,6 +25,10 @@ export class AccountsService {
           return this.httpClient.post(this.url+'/backoffice-service/backoffice-service/v1/save',data);
      }
 
+     findAccountsById(id:string):Observable<any>{
+          return this.httpClient.get(this.url+'/backoffice-service/backoffice-service/v1/find/'+id);
+     }
+
      dropdownRoles():Observable<any>{
           return this.httpClient.get(this.url+'/backoffice-service/backoffice-service/v1/dropdown-roles');
      }

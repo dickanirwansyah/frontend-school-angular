@@ -25,7 +25,7 @@
                    <td>{{accounts.email}}</td>
                    <td>{{accounts.dob | date}}</td>
                    <td>
-                         <button type="button" class="btn btn-primary">Update</button>&nbsp;
+                         <button type="button" class="btn btn-primary" (click)="edit(content, accounts.id)">Update</button>&nbsp;
                          <button type="button" class="btn btn-danger">Delete</button>
                    </td>
                </tr>
@@ -41,7 +41,8 @@
 <!--modal-->
 <ng-template #content let-modal>
      <div class="modal-header">
-          <h4>Forms Accounts</h4>
+          <h4 *ngIf="!isEdit">Create Forms Accounts</h4>
+          <h4 *ngIf="isEdit">Update Form Accounts</h4>
           <button type="button" class="btn btn-close" aria-label="close" (click)="modal.dismiss('Cross click')"></button>
      </div>
      <div class="modal-body">
@@ -57,15 +58,16 @@
                <hr>
                <label>Email</label>
                <input formControlName="email" type="text" class="form-control" placeholder="Email"/>
-               <hr>
-               <label>Password</label>
-               <input formControlName="password" type="password" class="form-control"/>
+               <hr *ngIf="!isEdit">
+               <label *ngIf="!isEdit">Password</label>
+               <input *ngIf="!isEdit" formControlName="password" type="password" class="form-control"/>
                <hr>
                <label>DOB</label>
                <div class="col-12">
                     <div class="input-group">
                          <input formControlName="dob" 
                          ngbDatepicker
+                         [(ngModel)]="modelDob"
                          placeholder="yyyy-mm-dd"
                          #d="ngbDatepicker"
                          type="text" class="form-control"/>
