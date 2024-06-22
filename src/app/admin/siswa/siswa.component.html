@@ -1,1 +1,44 @@
-<h3>Siswa Component</h3>
+<h3>Data Siswa</h3>
+<br/>
+<button type="button" class="btn btn-primary">Add</button>
+<br/>
+<br/>
+<input type="text" class=" form-control" name="search" placeholder="Search" style="width: 300px;"/>
+<hr/>
+<div class="container">
+     <table class="table table-hover table-striped">
+          <thead>
+               <tr>
+                    <th>No</th>
+                    <th>Image</th>
+                    <th>Fullname</th>
+                    <th>Email</th>
+                    <th>Dob</th>
+                    <th>Phone number</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+               </tr>
+          </thead>
+          <tbody>
+               <tr *ngFor="let siswa of listSiswa; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>
+                         <img style="width: 50px; height: 50px;" [src]="loadImage(siswa.avatar)"/>
+                    </td>
+                    <td>{{siswa.fullname}}</td>
+                    <td>{{siswa.email}}</td>
+                    <td>{{siswa.dob | date}}</td>
+                    <td>{{siswa.phoneNo}}</td>
+                    <td>{{siswa.gender}}</td>
+                    <td>
+                         <button class="btn btn-primary">
+                              Edit
+                         </button>&nbsp;
+                         <button class="btn btn-danger">
+                              Delete
+                         </button>
+                    </td>
+               </tr>
+          </tbody>
+     </table>
+</div>
